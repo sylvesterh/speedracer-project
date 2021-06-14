@@ -30,6 +30,36 @@ h1{
     border-radius: 20%;
 }
 
+#insClassic{
+    width:400px;
+    height:400px;
+    background-color: white;
+    padding:10px;
+    border: 50px solid rgb(181, 224, 64);
+    margin: 0 auto;
+    border-radius: 20%;
+}
+
+#classic-instruction{
+    margin-top:55%;
+    margin-left:40%;
+}
+
+#insHardmode{
+    width:400px;
+    height:400px;
+    background-color: white;
+    padding:10px;
+    border: 50px solid rgb(224, 64, 64);
+    margin: 0 auto;
+    border-radius: 20%;
+}
+
+#hardmode-instruction{
+    margin-top:50%;
+    margin-left:40%;
+}
+
 #playerName{
     margin-top: 15%;
     margin-left: 30%;

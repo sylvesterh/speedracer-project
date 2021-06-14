@@ -14,14 +14,26 @@ $(inputName);
 const hideScreen = () => {
   $("#stats").hide();
   $("#typing").hide();
+  $("#insClassic").hide();
+  $("#insHardmode").hide();
 };
 $(hideScreen);
 
 const moveToClassic = () => {
   $("#classic").on("click", (event) => {
     $("#selection").hide();
-    $("#typing").show();
+    $("#insClassic").show();
     event.preventDefault();
+
+    const toggleScrn = () => {
+      $("#classic-instruction").on("click", (event) => {
+        $("#insClassic").hide();
+        $("#typing").show();
+        event.preventDefault;
+      });
+    };
+    $(toggleScrn);
+
     // ============== Classic Mode ============== //
     const classicMode = () => {
       const texts = ["A Hamiltonian path", "Several algorithms for"];
@@ -53,11 +65,8 @@ const moveToClassic = () => {
           $(cursorCharacter).removeClass("cursor");
           $(cursorCharacter).addClass("correct");
           cursorPosition += 1;
-          // console.log(nextChar)
         }
         cursorCharacter = $("#typing span")[cursorPosition];
-        // let nextChar = $(nextPos).val()
-        // console.log(nextPos)
         $(cursorCharacter).addClass("cursor");
 
         if (cursorCharacter == undefined) {
@@ -78,6 +87,7 @@ const moveToClassic = () => {
           $(".WPM").text("Words Per Minute: " + wpm);
           $("#stats").show();
           $("#typing").hide();
+          $("#insClassic").hide();
 
           const createTimeDiv = $("<div>").addClass("time-taken");
           $("#stats").append(createTimeDiv);
@@ -103,8 +113,18 @@ $(moveToClassic);
 const moveToHardmode = () => {
   $("#hardmode").on("click", (event) => {
     $("#selection").hide();
-    $("#typing").show();
+    $("#insHardmode").show();
     event.preventDefault();
+
+    const toggleHMScrn = () => {
+      $("#hardmode-instruction").on("click", (event) => {
+        $("#insHardmode").hide();
+        $("#typing").show();
+        event.preventDefault;
+      });
+    };
+    $(toggleHMScrn);
+
     // ============== Hardmode Mode ============== //
     const hardmode = () => {
       const texts = [
@@ -124,20 +144,20 @@ const moveToHardmode = () => {
 
       const fadeInterval = () => {
         setInterval(() => {
-          // let i = Math.floor(Math.random() * spans.length);
-          // let randomIndex = $("span")[i];
-          // console.log(randomIndex);
           let i = Math.floor(Math.random() * 9);
           for (j = 0; j < spans.length; j++) {
-            if(j.toString()
-              .split("")
-              .some((item) => {
-                return item % i === 0;
-              })){
-                let randomIndex = ($("span")[j])
-                $(randomIndex).delay(500).animate({opacity:1});
-                $(randomIndex).delay(500).animate({opacity:0});
-              };
+            if (
+              j
+                .toString()
+                .split("")
+                .some((item) => {
+                  return item % i === 0;
+                })
+            ) {
+              let randomIndex = $("span")[j];
+              $(randomIndex).delay(500).animate({ opacity: 0 });
+              $(randomIndex).delay(500).animate({ opacity: 1 });
+            }
           }
         }, 3000);
       };
