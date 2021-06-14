@@ -63,7 +63,7 @@ const moveToClassic = () => {
         // console.log(startTime);
         if (key === cursorCharacter.innerText) {
           $(cursorCharacter).removeClass("cursor");
-          $(cursorC haracter).addClass("correct");
+          $(cursorCharacter).addClass("correct");
           cursorPosition += 1;
         }
         cursorCharacter = $("#typing span")[cursorPosition];
