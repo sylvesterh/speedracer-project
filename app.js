@@ -120,16 +120,26 @@ const moveToHardmode = () => {
       });
 
       let spans = $("span").get();
-      console.log(spans.length);
+      // console.log(spans.length);
 
       const fadeInterval = () => {
         setInterval(() => {
-          let i = Math.floor(Math.random() * spans.length);
-          let randomIndex = $("span")[i];
-          console.log(randomIndex);
-          $(randomIndex).delay(500).fadeOut(1200);
-          $(randomIndex).delay(500).fadeIn(1200);
-        }, 1000);
+          // let i = Math.floor(Math.random() * spans.length);
+          // let randomIndex = $("span")[i];
+          // console.log(randomIndex);
+          let i = Math.floor(Math.random() * 9);
+          for (j = 0; j < spans.length; j++) {
+            if(j.toString()
+              .split("")
+              .some((item) => {
+                return item % i === 0;
+              })){
+                let randomIndex = ($("span")[j])
+                $(randomIndex).delay(500).animate({opacity:1});
+                $(randomIndex).delay(500).animate({opacity:0});
+              };
+          }
+        }, 3000);
       };
       $(fadeInterval);
 
