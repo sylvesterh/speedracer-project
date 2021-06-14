@@ -7,10 +7,10 @@ body{
     margin-top:25px;
     margin-left:auto;
     margin-right:auto;
-    height:70%;
-    width:70%;
+    height:80%;
+    width:80%;
     overflow: hidden;
-    border-radius: 20%;
+    border-radius: 10%;
 }
 
 h1{
@@ -41,8 +41,15 @@ h1{
 }
 
 #classic-instruction{
-    margin-top:5%;
     margin-left:40%;
+    background-color:rgba(0, 255, 191, 0.801);
+    color:black;
+    font-style: bold;
+    width:100px;
+    height:30px;
+    cursor: pointer;
+    border:3px solid brown;
+    border-radius: 50%;
 }
 
 #insClassic img {
@@ -67,8 +74,15 @@ h1{
 }
 
 #hardmode-instruction{
-    margin-top:5%;
-    margin-left:40%;
+    margin-left:38%;
+    background-color:rgba(0, 255, 191, 0.801);
+    color:black;
+    font-style: bold;
+    width:100px;
+    height:30px;
+    cursor: pointer;
+    border:3px solid brown;
+    border-radius: 50%;
 }
 
 #insHardmode img {
@@ -144,4 +158,5 @@ h1{
     width:100px;
     height:40px;
     cursor: pointer;
+    border:3px solid black;
 }
