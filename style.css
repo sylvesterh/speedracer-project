@@ -41,8 +41,19 @@ h1{
 }
 
 #classic-instruction{
-    margin-top:55%;
+    margin-top:5%;
     margin-left:40%;
+}
+
+#insClassic img {
+    display:block;
+    margin-top:5%;
+    margin-left:auto;
+    margin-right:auto;
+    height:50%;
+    width:50%;
+    overflow: hidden;
+    border-radius: 20%;
 }
 
 #insHardmode{
@@ -56,9 +67,21 @@ h1{
 }
 
 #hardmode-instruction{
-    margin-top:50%;
+    margin-top:5%;
     margin-left:40%;
 }
+
+#insHardmode img {
+    display:block;
+    margin-top:5%;
+    margin-left:auto;
+    margin-right:auto;
+    height:40%;
+    width:60%;
+    overflow: hidden;
+    border-radius: 10%;
+}
+
 
 #playerName{
     margin-top: 15%;
