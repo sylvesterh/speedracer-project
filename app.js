@@ -65,7 +65,7 @@ const moveToClassic = () => {
           $(cursorCharacter).removeClass("cursor");
           $(cursorCharacter).addClass("correct");
           cursorPosition += 1;
-        }
+        } 
         cursorCharacter = $("#typing span")[cursorPosition];
         $(cursorCharacter).addClass("cursor");
 
