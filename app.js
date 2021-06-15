@@ -87,16 +87,16 @@ const cursorMovement = () => {
       const createWPM = $("<div>").addClass("WPM");
 
       const createNameDiv = $("<div>").addClass("nickname");
-      $("#stats").append(createNameDiv);
+      $("#stats").prepend(createNameDiv);
       $(".nickname").text("Player name: " + playerName);
 
-      $("#stats").append(createWPM);
+      $(".nickname").append(createWPM);
       $(".WPM").text("Words Per Minute: " + wpm);
       $("#stats").show();
       $("#typing").hide();
 
       const createTimeDiv = $("<div>").addClass("time-taken");
-      $("#stats").append(createTimeDiv);
+      $(".WPM").prepend(createTimeDiv);
       $(".time-taken").text("Time taken: " + seconds + " seconds");
     }
   });
