@@ -30,8 +30,6 @@ const textGen = () => {
   });
 };
 
-// console.log(spans.length);
-
 const fadeInterval = () => {
   setInterval(() => {
     let spans = $("span").get();
