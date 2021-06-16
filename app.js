@@ -7,7 +7,6 @@ const inputName = () => {
     let player = $("#playerName").val();
     playerName.push(player);
     event.preventDefault();
-    console.log(playerName);
   });
 };
 $(inputName);
@@ -54,10 +53,8 @@ const fadeInterval = () => {
 
 const cursorMovement = () => {
   // Definitions
-  let cursorCharacter = $("#typing span")[cursorPosition];
-  console.log("the cursor character is "+ $("#typing span")[cursorPosition])
+  cursorCharacter = $("#typing span")[cursorPosition];
   let firstCharacter = $("#typing span")[0];
-  console.log("this is "+$("#typing span")[0])
   $(firstCharacter).addClass("cursor");
 
   let startTime = null;
@@ -104,6 +101,7 @@ const cursorMovement = () => {
 
       $("#stats").prepend(createNameDiv);
       $(".nickname").text("Player name: " + playerName);
+      $("span").remove()
     }
   });
 };
@@ -112,7 +110,9 @@ const pressReset = () => {
   $("#reset").on("click", () => {
     // location.reload()
     $("#typing span").remove();
-    $(".nickname").empty();
+    $(".nickname").remove();
+    $(".WPM").remove();
+    $(".time-taken").remove()
     $("#stats").hide();
     $("#selection").show();
     cursorPosition = 0
