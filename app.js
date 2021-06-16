@@ -20,10 +20,7 @@ const hideScreen = () => {
 $(hideScreen);
 
 const textGen = () => {
-  const texts = [
-    "A Hamiltonian path",
-    "Several algorithms for",
-  ];
+  const texts = ["A Hamiltonian path", "Several algorithms for"];
 
   let randText = texts[Math.floor(Math.random() * texts.length)];
   randText.split("").map((char) => {
@@ -76,13 +73,13 @@ const cursorMovement = () => {
       $(cursorCharacter).removeClass("error");
       $(cursorCharacter).addClass("correct");
       cursorPosition += 1;
-    } else if (key !== cursorCharacter.innerText){
+    } else if (key !== cursorCharacter.innerText) {
       $(cursorCharacter).addClass("error");
     }
 
     cursorCharacter = $("#typing span")[cursorPosition];
     $(cursorCharacter).addClass("cursor");
-    
+
     if (cursorCharacter == undefined) {
       endTime = new Date();
       const delta = endTime - startTime;
@@ -91,18 +88,19 @@ const cursorMovement = () => {
       const wpm = Math.round((wps * 60.0) / 5.0);
       const createWPM = $("<div>").addClass("WPM");
 
+      const createTimeDiv = $("<div>").addClass("time-taken");
       const createNameDiv = $("<div>").addClass("nickname");
-      $("#stats").prepend(createNameDiv);
-      $(".nickname").text("Player name: " + playerName);
 
-      $(".nickname").append(createWPM);
+      $("#stats").prepend(createTimeDiv);
+      $(".time-taken").text("Time taken: " + seconds + " seconds");
+
+      $("#stats").prepend(createWPM);
       $(".WPM").text("Words Per Minute: " + wpm);
       $("#stats").show();
       $("#typing").hide();
 
-      const createTimeDiv = $("<div>").addClass("time-taken");
-      $(".WPM").prepend(createTimeDiv);
-      $(".time-taken").text("Time taken: " + seconds + " seconds");
+      $("#stats").prepend(createNameDiv);
+      $(".nickname").text("Player name: " + playerName);
     }
   });
 };
@@ -113,11 +111,11 @@ const restartBtn = () => {
 
   const pressReset = () => {
     $("#reset").on("click", () => {
-      location.reload();
-      // $("#typing").remove();
-      // $("#stats").empty();
-      // $("#stats").hide();
-      // $("#selection").show();
+      // location.reload();
+      $("span").remove();
+      $(".nickname").empty();
+      $("#stats").hide();
+      $("#selection").show();
     });
   };
   $(pressReset);
@@ -138,10 +136,10 @@ const moveToClassic = () => {
       });
     };
     $(toggleScrn);
+    $(textGen);
+    $(cursorMovement);
   });
 };
-$(textGen);
-$(cursorMovement);
 $(restartBtn);
 $(moveToClassic);
 
@@ -161,6 +159,8 @@ const moveToHardmode = () => {
     };
     $(toggleHMScrn);
     $(fadeInterval);
+    $(textGen);
+    $(cursorMovement);
   });
 };
 $(moveToHardmode);
