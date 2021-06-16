@@ -1,4 +1,5 @@
 let playerName = [];
+let cursorPosition = 0;
 
 const inputName = () => {
   $(".btn").on("click", (event) => {
@@ -53,9 +54,10 @@ const fadeInterval = () => {
 
 const cursorMovement = () => {
   // Definitions
-  let cursorPosition = 0;
   let cursorCharacter = $("#typing span")[cursorPosition];
+  console.log("the cursor character is "+ $("#typing span")[cursorPosition])
   let firstCharacter = $("#typing span")[0];
+  console.log("this is "+$("#typing span")[0])
   $(firstCharacter).addClass("cursor");
 
   let startTime = null;
@@ -63,10 +65,11 @@ const cursorMovement = () => {
 
   // Key and keydown logic
   $(document).on("keydown", ({ key }) => {
-    // console.log(key);
+    console.log("this key is " + key);
     if (!startTime) {
       startTime = new Date();
     }
+
     // console.log(startTime);
     if (key === cursorCharacter.innerText) {
       $(cursorCharacter).removeClass("cursor");
@@ -80,7 +83,7 @@ const cursorMovement = () => {
     cursorCharacter = $("#typing span")[cursorPosition];
     $(cursorCharacter).addClass("cursor");
 
-    if (cursorCharacter == undefined) {
+    if (cursorCharacter === undefined) {
       endTime = new Date();
       const delta = endTime - startTime;
       const seconds = delta / 1000;
@@ -105,19 +108,21 @@ const cursorMovement = () => {
   });
 };
 
+const pressReset = () => {
+  $("#reset").on("click", () => {
+    // location.reload()
+    $("#typing span").remove();
+    $(".nickname").empty();
+    $("#stats").hide();
+    $("#selection").show();
+    cursorPosition = 0
+    playerName = []
+  });
+};
+
 const restartBtn = () => {
   const reset = $("<button>").attr("id", "reset").text("Reset");
   $("#stats").append("<br>", reset);
-
-  const pressReset = () => {
-    $("#reset").on("click", () => {
-      // location.reload();
-      $("span").remove();
-      $(".nickname").empty();
-      $("#stats").hide();
-      $("#selection").show();
-    });
-  };
   $(pressReset);
 };
 
@@ -164,3 +169,4 @@ const moveToHardmode = () => {
   });
 };
 $(moveToHardmode);
+console.log(cursorPosition)
