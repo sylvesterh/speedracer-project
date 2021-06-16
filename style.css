@@ -145,11 +145,17 @@ h1{
 }
 
 .cursor{
-    background-color: cornflowerblue;
+    background-color: rgba(4, 242, 250, 0.5);
 }
 
 .correct{
     background-color:greenyellow;
+}
+
+.error{
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 #reset{
