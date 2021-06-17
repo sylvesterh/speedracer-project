@@ -1,5 +1,7 @@
 let playerName = [];
 let cursorPosition = 0;
+let startTime = null;
+let endTime = null;
 
 const inputName = () => {
   $(".btn").on("click", (event) => {
@@ -7,6 +9,7 @@ const inputName = () => {
     let player = $("#playerName").val();
     playerName.push(player);
     event.preventDefault();
+    console.log(playerName);
   });
 };
 $(inputName);
@@ -19,6 +22,11 @@ const hideScreen = () => {
 };
 $(hideScreen);
 
+const createTypingDiv = () => {
+  const createDiv = $("<div>").attr("id", "typing");
+  $("body").append(createDiv);
+};
+
 const textGen = () => {
   const texts = ["A Hamiltonian path", "Several algorithms for"];
 
@@ -30,26 +38,24 @@ const textGen = () => {
   });
 };
 
-const fadeInterval = () => {
-  setInterval(() => {
-    let spans = $("span").get();
-    let i = Math.floor(Math.random() * 9);
-    for (j = 0; j < spans.length; j++) {
-      if (
-        j
-          .toString()
-          .split("")
-          .some((item) => {
-            return item % i === 0;
-          })
-      ) {
-        let randomIndex = $("span")[j];
-        $(randomIndex).delay(500).animate({ opacity: 0 });
-        $(randomIndex).delay(500).animate({ opacity: 1 });
-      }
+const fadeInterval = setInterval(() => {
+  let spans = $("span").get();
+  let i = Math.floor(Math.random() * 9);
+  for (j = 0; j < spans.length; j++) {
+    if (
+      j
+        .toString()
+        .split("")
+        .some((item) => {
+          return item % i === 0;
+        })
+    ) {
+      let randomIndex = $("span")[j];
+      $(randomIndex).delay(500).animate({ opacity: 0 });
+      $(randomIndex).delay(500).animate({ opacity: 1 });
     }
-  }, 3000);
-};
+  }
+}, 3000);
 
 const cursorMovement = () => {
   // Definitions
@@ -57,16 +63,13 @@ const cursorMovement = () => {
   let firstCharacter = $("#typing span")[0];
   $(firstCharacter).addClass("cursor");
 
-  let startTime = null;
-  let endTime = null;
-
   // Key and keydown logic
   $(document).on("keydown", ({ key }) => {
-    console.log("this key is " + key);
+    // console.log(key);
     if (!startTime) {
       startTime = new Date();
+      console.log(startTime);
     }
-
     // console.log(startTime);
     if (key === cursorCharacter.innerText) {
       $(cursorCharacter).removeClass("cursor");
@@ -76,11 +79,10 @@ const cursorMovement = () => {
     } else if (key !== cursorCharacter.innerText) {
       $(cursorCharacter).addClass("error");
     }
-
     cursorCharacter = $("#typing span")[cursorPosition];
     $(cursorCharacter).addClass("cursor");
 
-    if (cursorCharacter === undefined) {
+    if (cursorCharacter == undefined) {
       endTime = new Date();
       const delta = endTime - startTime;
       const seconds = delta / 1000;
@@ -101,72 +103,81 @@ const cursorMovement = () => {
 
       $("#stats").prepend(createNameDiv);
       $(".nickname").text("Player name: " + playerName);
-      $("span").remove()
     }
   });
 };
 
 const pressReset = () => {
   $("#reset").on("click", () => {
-    // location.reload()
-    $("#typing span").remove();
+    // location.reload();
+    clearInterval(fadeInterval);
+    $("#playerName").empty();
+    $("#typing").remove();
     $(".nickname").remove();
     $(".WPM").remove();
-    $(".time-taken").remove()
+    $(".time-taken").remove();
     $("#stats").hide();
     $("#selection").show();
-    cursorPosition = 0
-    playerName = []
+    cursorPosition = 0;
+    playerName = [];
+    startTime = null;
+    $("#reset").remove();
+    $("#reset").off();
   });
 };
 
 const restartBtn = () => {
   const reset = $("<button>").attr("id", "reset").text("Reset");
-  $("#stats").append("<br>", reset);
+  $("#stats").append(reset);
   $(pressReset);
 };
 
+const toggleClassicScrn = () => {
+  $("#classic-instruction").on("click", (event) => {
+    console.log("hello");
+    $("#insClassic").hide();
+    $(createTypingDiv);
+    $(textGen);
+    $(cursorMovement);
+    $(restartBtn);
+    $("#typing").show();
+    event.preventDefault;
+    $("#classic-instruction").off();
+  });
+};
+
+const toggleHMScrn = () => {
+  $("#hardmode-instruction").on("click", (event) => {
+    $("#insHardmode").hide();
+    $(createTypingDiv);
+    $(textGen);
+    $(cursorMovement);
+    $(restartBtn);
+    $("#typing").show();
+    event.preventDefault();
+    $("#hardmode-instruction").off();
+  });
+};
+
 // ============== Classic Mode ============== //
-const moveToClassic = () => {
+const classicMode = () => {
   $("#classic").on("click", (event) => {
     $("#selection").hide();
     $("#insClassic").show();
     event.preventDefault();
-
-    const toggleScrn = () => {
-      $("#classic-instruction").on("click", (event) => {
-        $("#insClassic").hide();
-        $("#typing").show();
-        event.preventDefault();
-      });
-    };
-    $(toggleScrn);
-    $(textGen);
-    $(cursorMovement);
+    clearInterval(fadeInterval);
+    $(toggleClassicScrn);
   });
 };
-$(restartBtn);
-$(moveToClassic);
+$(classicMode);
 
 // ============== Hardmode Mode ============== //
-const moveToHardmode = () => {
+const hardMode = () => {
   $("#hardmode").on("click", (event) => {
     $("#selection").hide();
     $("#insHardmode").show();
     event.preventDefault();
-
-    const toggleHMScrn = () => {
-      $("#hardmode-instruction").on("click", (event) => {
-        $("#insHardmode").hide();
-        $("#typing").show();
-        event.preventDefault();
-      });
-    };
     $(toggleHMScrn);
-    $(fadeInterval);
-    $(textGen);
-    $(cursorMovement);
   });
 };
-$(moveToHardmode);
-console.log(cursorPosition)
+$(hardMode);
