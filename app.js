@@ -38,24 +38,28 @@ const textGen = () => {
   });
 };
 
-const fadeInterval = setInterval(() => {
-  let spans = $("span").get();
-  let i = Math.floor(Math.random() * 9);
-  for (j = 0; j < spans.length; j++) {
-    if (
-      j
-        .toString()
-        .split("")
-        .some((item) => {
-          return item % i === 0;
-        })
-    ) {
-      let randomIndex = $("span")[j];
-      $(randomIndex).delay(500).animate({ opacity: 0 });
-      $(randomIndex).delay(500).animate({ opacity: 1 });
+const fadeInterval = () => {
+  const intervals = setInterval(() => {
+    console.log("hi");
+    let spans = $("span").get();
+    let i = Math.floor(Math.random() * 9);
+    for (j = 0; j < spans.length; j++) {
+      if (
+        j
+          .toString()
+          .split("")
+          .some((item) => {
+            return item % i === 0;
+          })
+      ) {
+        let randomIndex = $("span")[j];
+        $(randomIndex).delay(500).animate({ opacity: 0 });
+        $(randomIndex).delay(500).animate({ opacity: 1 });
+      }
     }
-  }
-}, 3000);
+  }, 3000);
+  return intervals
+};
 
 const cursorMovement = () => {
   // Definitions
@@ -107,10 +111,9 @@ const cursorMovement = () => {
   });
 };
 
-const pressReset = () => {
+const pressReset = (timer) => {
   $("#reset").on("click", () => {
     // location.reload();
-    clearInterval(fadeInterval);
     $("#playerName").empty();
     $("#typing").remove();
     $(".nickname").remove();
@@ -118,28 +121,31 @@ const pressReset = () => {
     $(".time-taken").remove();
     $("#stats").hide();
     $("#selection").show();
+    $("#playerName").val("");
     cursorPosition = 0;
     playerName = [];
     startTime = null;
+    endTime = null;
     $("#reset").remove();
     $("#reset").off();
+    clearInterval(timer)
   });
 };
 
-const restartBtn = () => {
+const restartBtn = (timer) => {
   const reset = $("<button>").attr("id", "reset").text("Reset");
   $("#stats").append(reset);
-  $(pressReset);
+  pressReset(timer)
 };
 
 const toggleClassicScrn = () => {
   $("#classic-instruction").on("click", (event) => {
     console.log("hello");
     $("#insClassic").hide();
-    $(createTypingDiv);
-    $(textGen);
-    $(cursorMovement);
-    $(restartBtn);
+    createTypingDiv();
+    textGen();
+    cursorMovement();
+    restartBtn();
     $("#typing").show();
     event.preventDefault;
     $("#classic-instruction").off();
@@ -149,10 +155,11 @@ const toggleClassicScrn = () => {
 const toggleHMScrn = () => {
   $("#hardmode-instruction").on("click", (event) => {
     $("#insHardmode").hide();
-    $(createTypingDiv);
-    $(textGen);
-    $(cursorMovement);
-    $(restartBtn);
+    createTypingDiv();
+    textGen();
+    const timer = fadeInterval();
+    cursorMovement();
+    restartBtn(timer);
     $("#typing").show();
     event.preventDefault();
     $("#hardmode-instruction").off();
