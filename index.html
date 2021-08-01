@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Speed Racer Challenge</title>
-    <link href="style.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="app.js"></script>
-  </head>
-  <body>
-    <h1>Speed Racer</h1>
-    <div id="selection">
-      <form>
-        <img src="Sakura Tree.png">
-        <input type="text"
-          id="playerName"
-          placeholder="Enter your name"
-        /><br />
-        <button class="btn" id="classic">Classic Mode</button>
-        <button class="btn" id="hardmode">Hardmode</button>
-      </form>
-    </div>
-    <div id="stats">
-      <img src="Clocktower.png" align="right"><br>
-    </div>
-    <div id="insClassic" class="instruction">
-      <h4 align="center">Classic Mode</h4>
-      <img src="Beach.png" align="center">
-      <ul>
-        <li>This is the vanilla version</li>
-        <li>The timer starts only when a key is pressed on the next screen</li>
-        <li>The game is over once the player finishes the paragraph</li>
-      </ul>
-      <button id="classic-instruction">Continue</button>
-    </div><br>
-    <div id="insHardmode" class="instruction">
-      <h4 align="center">Hard Mode</h4>
-      <img src="Castle.png" align="center">
-      <ul>
-        <li>This is Hard-Mode</li>
-        <li>The timer starts only when a key is pressed on the next screen</li>
-        <li>The words in the paragraph would disappear and re-appear at intervals</li>
-        <li>The game is over once the player finishes the paragraph</li>
-      </ul>
-      <button id="hardmode-instruction">Continue</button>
-    </div><br>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name=”title” property=”og:title” content="Speedracer">
+  <meta name=”image” property=”og:image” content="https://ibb.co/R9vVQH9">
+  <meta name=”description” property="A speed typing game made with javascript, jQuery, CSS and HTML">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speed Racer Challenge</title>
+  <link href="style.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body>
+  <h1>Speed Racer</h1>
+  <div id="selection">
+    <form>
+      <img src="Sakura Tree.png">
+      <input type="text" id="playerName" placeholder="Enter your name" /><br />
+      <button class="btn" id="classic">Classic Mode</button>
+      <button class="btn" id="hardmode">Hardmode</button>
+    </form>
+  </div>
+  <div id="stats">
+    <img src="Clocktower.png" align="right"><br>
+  </div>
+  <div id="insClassic" class="instruction">
+    <h4 align="center">Classic Mode</h4>
+    <img src="Beach.png" align="center">
+    <ul>
+      <li>This is the vanilla version</li>
+      <li>The timer starts only when a key is pressed on the next screen</li>
+      <li>The game is over once the player finishes the paragraph</li>
+    </ul>
+    <button id="classic-instruction">Continue</button>
+  </div><br>
+  <div id="insHardmode" class="instruction">
+    <h4 align="center">Hard Mode</h4>
+    <img src="Castle.png" align="center">
+    <ul>
+      <li>This is Hard-Mode</li>
+      <li>The timer starts only when a key is pressed on the next screen</li>
+      <li>The words in the paragraph would disappear and re-appear at intervals</li>
+      <li>The game is over once the player finishes the paragraph</li>
+    </ul>
+    <button id="hardmode-instruction">Continue</button>
+  </div><br>
+</body>
+
 </html>
